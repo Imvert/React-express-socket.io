@@ -5,6 +5,7 @@ const socket = io("http://localhost:4000");
 function App() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [alert, setAlert] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,8 +13,16 @@ function App() {
       body: message,
       from: "Me",
     };
-    setMessages([...messages, newMessage]);
-    socket.emit("message", message);
+    if (message === "") {
+      setAlert("Ingrese su mensaje..");
+      setTimeout(() => {
+        setAlert("");
+      }, 1500);
+    } else {
+      setMessages([...messages, newMessage]);
+      socket.emit("message", message);
+      setMessage("");
+    }
   };
 
   useEffect(() => {
@@ -59,6 +68,7 @@ function App() {
             </li>
           ))}
         </ul>
+        <p>{alert}</p>
       </form>
     </div>
   );
