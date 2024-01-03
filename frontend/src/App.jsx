@@ -40,7 +40,7 @@ function App() {
   return (
     <div className="h-screen bg-zinc-800 text-white flex items-center justify-center">
       <form onSubmit={handleSubmit} className="bg-zinc-900  px-14 p-10">
-        <h1 className="text-2xl font-bold my-2">Chat-mail</h1>
+        <h1 className="text-2xl font-bold my-2">Live-Chat 💭</h1>
         <input
           type="text"
           className="border-2 border-zinc-500 p-2 w-full text-black"
