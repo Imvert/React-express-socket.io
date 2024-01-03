@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 import { Server as SocketServer } from "socket.io";
 
 const app = express();
-const PORT = 4001 || 4000;
+const PORT = 10000 || 4000;
 const _dirname = dirname(fileURLToPath(import.meta.url));
 const server = http.createServer(app);
 const io = new SocketServer(server, {
