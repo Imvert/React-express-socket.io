@@ -1,12 +1,16 @@
 import express from "express";
 import http from "http";
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
 import { Server as SocketServer } from "socket.io";
 
 const app = express();
+const PORT = 4001 || 4000;
+const _dirname = dirname(fileURLToPath(import.meta.url));
 const server = http.createServer(app);
 const io = new SocketServer(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "*",
   },
 });
 
@@ -19,5 +23,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(4000);
-console.log("server on port", 4000);
+app.use(express.static(join(_dirname, "../frontend/dist")));
+server.listen(PORT);
+console.log("server on port", PORT);
